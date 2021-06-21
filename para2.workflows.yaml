@@ -1,0 +1,16 @@
+main:
+  steps:
+  - parallel-executor:
+      call: experimental.executions.map
+      args:
+        workflow_id: test-insert2
+        # arguments: [{"key1":1},{"key1":2},{"key1":3}]
+        arguments: [{"key1":1},{"key1":3}]
+      result: result
+  - logStep:
+      call: sys.log
+      args:
+        text: ${result}
+        severity: INFO
+  - returnOutput:
+      return: ${result}
